@@ -1,0 +1,116 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-lg-12">
+
+      <div class="row">
+        <div class="col-md-8 m-auto">
+          <div class="card ">
+            <div class="card-header bg-secondary text-white">
+              <p class="h4 ">Enrollment Form</p>
+
+            </div>
+            <div class="card-body">
+              <form [formGroup]="form" (ngSubmit)="onSubmit(eform)" #eform>
+
+                <div class="form-group mb-3">
+                  <label for="name">Associate Name*</label>
+                  <input formControlName="username" [class.is-invalid]="getUsername().touched && getUsername().invalid" [class.is-valid]="getUsername().touched && getUsername().valid" type="text" class="form-control" placeholder="Username">
+                  <div *ngIf="getUsername().touched && getUsername().invalid">
+                    <small class="text-danger" *ngIf="getUsername().errors.regExpValidator">Invalid Username</small>
+                  </div>
+                  <small *ngIf="getUsername().touched && getUsername().valid" class="text-success">
+                    Looks Good
+                  </small>
+                </div>
+                <div class="form-group mb-3">
+                  <label for="email">Associate Email*</label>
+                  <input formControlName="email" [class.is-invalid]="getEmail().touched && getEmail().invalid" [class.is-valid]="getEmail().touched && getEmail().valid" type="email" class="form-control" placeholder="Email">
+                  <div *ngIf="getEmail().touched && getEmail().invalid">
+                    <small class="text-danger">Enter a proper Email</small>
+                  </div>
+                  <small *ngIf="getEmail().touched && getEmail().valid" class="text-success">
+                    Looks Good
+                  </small>
+                </div>
+                <div class="form-group mb-3">
+                  <label for="password">Associate Password*</label>
+                  <input formControlName="password" [class.is-invalid]="getPassword().touched && getPassword().invalid" [class.is-valid]="getPassword().touched && getPassword().valid" type="password" class="form-control" placeholder="Password">
+                  <div *ngIf="getPassword().touched && getPassword().invalid">
+                    <small class="text-danger">Enter a proper Password</small>
+                  </div>
+                  <small *ngIf="getPassword().touched && getPassword().valid" class="text-success">
+                    Looks Good
+                  </small>
+                </div>
+                <div class="form-group mb-3">
+                  <label>Gender*</label>
+                  <div class="custom-control custom-radio">
+                    <input id="male" type="radio" class="custom-control-input" value="male" name="gender" formControlName="gender" [class.is-invalid]="getGender().touched && getGender().invalid" [class.is-valid]="getGender().touched && getGender().valid">
+                    <label class="custom-control-label" for="male">Male</label>
+                  </div>
+
+                  <div class="custom-control custom-radio">
+                    <input id="female" type="radio" class="custom-control-input" value="female" name="gender" formControlName="gender">
+                    <label class="custom-control-label" for="female">Female</label>
+                  </div>
+                  <div *ngIf="getGender().touched && getGender().invalid">
+                    <small class="text-danger">Select a Gender</small>
+                  </div>
+                  <small *ngIf="getGender().touched && getGender().valid" class="text-success">
+                    Looks Good
+                  </small>
+
+                </div>
+                <div class="form-group mb-3">
+                  <label>Location*</label><br>
+                  <select formControlName="city" [class.is-invalid]="getCity().touched && getCity().invalid" [class.is-valid]="getCity().touched && getCity().valid" class="form-control">
+                    <option value="">Select a City</option>
+                    <option *ngFor="let city of City" [value]="city">{{city}}</option>
+                  </select>
+                  <div *ngIf="getCity().touched && getCity().invalid">
+                    <small class="text-danger">Select a Course</small>
+                  </div>
+                  <small *ngIf="getCity().touched && getCity().valid" class="text-success">
+                    Looks Good
+                  </small>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label for="body" class="form-label">Remarks*</label>
+                  <textarea class="form-control" formControlName="body" [class.is-invalid]="getBody().touched && getBody().invalid" [class.is-valid]="getBody().touched && getBody().valid" id="body" rows="3" placeholder="Please Enter Details"></textarea>
+                  <div *ngIf="getBody().touched && getBody().invalid" class="alert-alert-danger">
+                    <div *ngIf="getBody().errors.required" class="text-danger">Message is required</div>
+                  </div>
+                  <small *ngIf="getBody().touched && getBody().valid" class="text-success">
+                    Looks Good
+                  </small>
+                </div>
+                <div class="form-group mb-3">
+                  <label for="tc" class="form-label">Terms and Conditions*: &nbsp; </label>
+                  <input type="checkbox" formControlName="tc" id="tc">
+                  <div *ngIf="f.tc.touched && f.tc.invalid" class="alert-alert-danger">
+                    <div *ngIf="f.tc.errors.required" class="text-danger">Accept Terms and Conditions</div>
+                  </div>
+
+                </div>
+                <!--
+                <div class="form-group mb-3">
+                  <button type="submit" class="btn btn-danger btn-lg btn-block">Submit</button>
+                </div>
+                -->
+                   <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-success btn-lg me-2" [disabled]="form.invalid">{{ isEmpUpdate ?
+          "Update" : "Save" }}</button>
+        <button type="button" class="btn btn-danger btn-lg" (click)="resetForm(form)">Reset</button>
+      </div>
+                
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div >
